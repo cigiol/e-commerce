@@ -22,7 +22,7 @@ const CardList = ({ itemsPerPage = 12 }) => {
   };
 
   return (
-    <>
+    <div className="flex flex-col gap-5">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {currentItems?.map((p) => (
           <Card
@@ -34,7 +34,7 @@ const CardList = ({ itemsPerPage = 12 }) => {
           />
         ))}
       </div>
-      <div className="flex justify-center mt-5">
+      <div className="flex justify-center">
         <ReactPaginate
           className="flex gap-3"
           nextLabel=">"
@@ -57,7 +57,7 @@ const CardList = ({ itemsPerPage = 12 }) => {
           renderOnZeroPageCount={null}
         />
       </div>
-    </>
+    </div>
   );
 };
 

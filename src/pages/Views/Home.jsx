@@ -6,6 +6,8 @@ import Button from "@components/Button";
 import Input from "@components/Input";
 import CardList from "@pages/Modules/CardList/CardList";
 import Main from "@pages/Layout/Main";
+import FilterArea from "@pages/Modules/FilterArea/FilterArea";
+import Basket from "@pages/Modules/BasketArea/Basket";
 
 const Home = () => {
   const { data: products, isLoading } = useGetProductsQuery();
@@ -21,9 +23,9 @@ const Home = () => {
 
   return (
     <Main>
-      <div></div>
+      <FilterArea />
       {isLoading ? <div>LOADING...</div> : <CardList />}
-      <div></div>
+      <Basket />
     </Main>
   );
 };

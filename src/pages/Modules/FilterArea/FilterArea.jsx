@@ -1,5 +1,5 @@
 const FilterArea = () => {
-  return <div></div>;
+  return <div>FILTER</div>;
 };
 
 export default FilterArea;
