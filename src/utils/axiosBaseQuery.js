@@ -1,5 +1,6 @@
 import axios from "axios";
-const API_BASE_URL = process.env.API_BASE_URL;
+
+import { API_URL } from "../constant/Variable";
 
 const axiosParameterBuilder = async (config) => {
   const { method, headers = {}, data = {} } = config;
@@ -28,12 +29,12 @@ const axiosParameterBuilder = async (config) => {
 };
 
 const apiURLBuilder = (params) => {
-  const { baseUrl = API_BASE_URL, path = "" } = params;
+  const { baseUrl = API_URL, path = "" } = params;
   return `${baseUrl}/${path}`;
 };
 
 export const axiosBaseQuery =
-  ({ baseUrl } = { baseUrl: API_BASE_URL }) =>
+  ({ baseUrl } = { baseUrl: API_URL }) =>
   async (queryParams) => {
     try {
       const { path, ...rest } = queryParams;
