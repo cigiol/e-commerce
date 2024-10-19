@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { API_URL } from "../constant/Variable";
+import { API_URL } from "@constant/Variable";
 
 const axiosParameterBuilder = async (config) => {
   const { method, headers = {}, data = {} } = config;

@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "../pages/Views/Home.jsx";
-import Product from "../pages/Views/Product.jsx";
+import Home from "@pages/Views/Home.jsx";
+import Product from "@pages/Views/Product";
 
 function Router() {
   return (

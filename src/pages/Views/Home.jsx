@@ -1,10 +1,7 @@
 import { useEffect } from "react";
-import { useGetProductsQuery } from "../../store/features/app/appApi";
+import { useGetProductsQuery } from "@store/features/app/appApi";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  appSelector,
-  updateAppProducts,
-} from "../../store/features/app/appSlice";
+import { appSelector, updateAppProducts } from "@store/features/app/appSlice";
 
 function Home() {
   const { data: products, isLoading } = useGetProductsQuery();
