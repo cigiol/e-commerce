@@ -8,7 +8,6 @@ const Home = () => {
     <Main>
       <FilterArea />
       <CardList />
-      <BasketArea />
     </Main>
   );
 };
