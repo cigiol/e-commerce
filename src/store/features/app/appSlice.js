@@ -71,6 +71,11 @@ export const filtersSelector = (state) => state.app.app.filters;
 export const sortSelector = (state) => state.app.app.sort;
 export const searchTermSelector = (state) => state.app.app.searchTerm;
 export const basketSelector = (state) => state.app.app.basket;
+export const totalPriceSelector = (state) => {
+  return state.app.app.basket.reduce((total, product) => {
+    return total + parseFloat(product.price) * product.quantity;
+  }, 0);
+};
 
 export const {
   updateApp,

@@ -4,6 +4,7 @@ import {
   decreaseBasket,
   increaseBasket,
   sortSelector,
+  totalPriceSelector,
   updateAppField,
 } from "@store/features/app/appSlice";
 import React, { useState } from "react";
@@ -12,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Basket = () => {
   const dispatch = useDispatch();
   const basket = useSelector(basketSelector);
+  const totalPrice = useSelector(totalPriceSelector);
   console.log(basket);
 
   const handleIncreaseBasket = (id) => {
@@ -55,7 +57,9 @@ const Basket = () => {
       <div className="flex flex-col gap-4 p-4 bg-white shadow">
         <div>
           <label className="text-sm">Total Price:</label>
-          <label className="text-primary font-bold text-sm"> 117.000 ₺</label>
+          <label className="text-primary font-bold text-sm">
+            {totalPrice.toFixed(2)} ₺
+          </label>
         </div>
         <Button buttonText="Go To Checkout" buttonClass="text-sm p-1 rounded" />
       </div>

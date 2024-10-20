@@ -3,11 +3,11 @@ import Filter from "./Filter";
 import SortingArea from "./SortingArea";
 import { brandsSelector, modelsSelector } from "@store/features/app/appSlice";
 
-const FilterArea = () => {
+const FilterArea = ({ className = "" }) => {
   const brands = useSelector(brandsSelector);
   const models = useSelector(modelsSelector);
   return (
-    <div className="flex flex-col gap-4">
+    <div className={`flex flex-col gap-4 ${className}`}>
       <SortingArea />
       <Filter title="Brands" items={brands} attribute={"brand"} />
       <Filter title="Model" items={models} attribute={"model"} />

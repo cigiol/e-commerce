@@ -6,7 +6,7 @@ import BasketArea from "@pages/Modules/BasketArea/BasketArea";
 const Home = () => {
   return (
     <Main>
-      <FilterArea />
+      <FilterArea className="hidden md:block" />
       <CardList />
     </Main>
   );
