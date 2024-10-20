@@ -25,10 +25,8 @@ export const appSlice = createSlice({
     updateAppField: (state, action) => {
       const { field, value } = action.payload;
       state.app[field] = value;
-      console.log(field, value);
     },
     addFilter: (state, action) => {
-      console.log(action.payload);
       const { attribute, item } = action.payload;
       state.app.filters[attribute] = [...state.app.filters[attribute], item];
     },

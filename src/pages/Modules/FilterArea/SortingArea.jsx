@@ -7,7 +7,6 @@ const Sorting = () => {
   const dispatch = useDispatch();
   const sortOptions = ["ascDate", "descDate", "ascPrice", "descPrice"];
   const sort = useSelector(sortSelector);
-  console.log(sort);
 
   return (
     <div>

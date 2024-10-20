@@ -15,7 +15,9 @@ const Filter = ({ title, items, attribute }) => {
   const filteredItems = useMemo(() => {
     return searchTerm
       ? items.filter((item) =>
-          item[attribute].toLowerCase().includes(searchTerm.toLowerCase())
+          item[attribute]
+            .toLocaleLowerCase("tr")
+            .includes(searchTerm.toLocaleLowerCase("tr"))
         )
       : items;
   }, [searchTerm, items]);

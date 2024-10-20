@@ -21,6 +21,7 @@ const CardList = ({ itemsPerPage = 12 }) => {
   const filters = useSelector(filtersSelector);
   const searchTerm = useSelector(searchTermSelector);
   const sort = useSelector(sortSelector);
+
   const filteredProducts = useMemo(() => {
     return products
       ?.filter((p) =>
@@ -29,7 +30,13 @@ const CardList = ({ itemsPerPage = 12 }) => {
       .filter((p) =>
         filters.model.length ? filters.model.includes(p.model) : p
       )
-      .filter((p) => (searchTerm ? p.name.includes(searchTerm) : p))
+      .filter((p) =>
+        searchTerm
+          ? p.name
+              .toLocaleLowerCase("tr")
+              .includes(searchTerm.toLocaleLowerCase("tr"))
+          : p
+      )
       .sort((a, b) => {
         if (sort === "ascDate") {
           return new Date(b.createdAt) - new Date(a.createdAt);
@@ -43,9 +50,7 @@ const CardList = ({ itemsPerPage = 12 }) => {
           return 0;
         }
       });
-  }, [filters, products, sort]);
-
-  console.log(filteredProducts);
+  }, [filters, products, sort, searchTerm]);
 
   useEffect(() => {
     if (isLoading) return;
@@ -60,7 +65,6 @@ const CardList = ({ itemsPerPage = 12 }) => {
       )
     ).map((product) => JSON.parse(product));
     dispatch(updateApp({ ...app, products, brands, models }));
-    console.log(models, brands);
   }, [products, isLoading]);
 
   useEffect(() => {
