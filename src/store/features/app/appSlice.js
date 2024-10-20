@@ -36,6 +36,14 @@ export const appSlice = createSlice({
         (filter) => filter !== item
       );
     },
+    addToBasket: (state, action) => {
+      const { item } = action.payload;
+      state.app.basket = [...state.app.basket, item];
+    },
+    removeFromBasket: (state, action) => {
+      const { idx } = action.payload;
+      state.app.basket = state.app.basket.filter((b) => b.id !== idx);
+    },
   },
 });
 
@@ -46,9 +54,15 @@ export const modelsSelector = (state) => state.app.app.models;
 export const filtersSelector = (state) => state.app.app.filters;
 export const sortSelector = (state) => state.app.app.sort;
 export const searchTermSelector = (state) => state.app.app.searchTerm;
+export const basketSelector = (state) => state.app.app.basket;
 
-export const { updateApp, updateAppField, addFilter, removeFilter } =
-  appSlice.actions;
+export const {
+  updateApp,
+  updateAppField,
+  addFilter,
+  removeFilter,
+  addToBasket,
+} = appSlice.actions;
 
 export const appSliceReducer = appSlice.reducer;
 export const appSliceReducerName = appSlice.name;

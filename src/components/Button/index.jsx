@@ -6,23 +6,12 @@ const Button = ({
   buttonText = "",
   buttonClass = "",
   onClick = () => {},
-  disabled = false,
 }) => {
-  const handleOnClick = () => {
-    if (disabled) {
-      return;
-    } else {
-      onClick();
-    }
-  };
   return (
     <div
       id={id}
-      className={`flex items-center justify-center bg-primary text-white ${
-        disabled ? "cursor-not-allowed opacity-75" : "opacity-100"
-      } ${buttonClass} `}
-      onClick={handleOnClick}
-      disabled={disabled}
+      className={`flex items-center justify-center bg-primary text-white ${buttonClass} `}
+      onClick={onClick}
     >
       {/* {isIcon ? (
         buttonIcon
