@@ -40,9 +40,25 @@ export const appSlice = createSlice({
       const { item } = action.payload;
       state.app.basket = [...state.app.basket, item];
     },
+    increaseBasket: (state, action) => {
+      const { id } = action.payload;
+      const existingProduct = state.app.basket.find((b) => b.id === id);
+      if (existingProduct) {
+        existingProduct.quantity += 1;
+      }
+    },
+    decreaseBasket: (state, action) => {
+      const { id } = action.payload;
+      const existingProduct = state.app.basket.find((b) => b.id === id);
+      if (existingProduct) {
+        existingProduct.quantity === 1
+          ? (state.app.basket = state.app.basket.filter((b) => b.id !== id))
+          : (existingProduct.quantity -= 1);
+      }
+    },
     removeFromBasket: (state, action) => {
-      const { idx } = action.payload;
-      state.app.basket = state.app.basket.filter((b) => b.id !== idx);
+      const { id } = action.payload;
+      state.app.basket = state.app.basket.filter((b) => b.id !== id);
     },
   },
 });
@@ -62,6 +78,8 @@ export const {
   addFilter,
   removeFilter,
   addToBasket,
+  increaseBasket,
+  decreaseBasket,
 } = appSlice.actions;
 
 export const appSliceReducer = appSlice.reducer;

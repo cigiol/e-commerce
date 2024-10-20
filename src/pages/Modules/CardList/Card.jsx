@@ -1,5 +1,9 @@
 import Button from "@components/Button";
-import { addToBasket, basketSelector } from "@store/features/app/appSlice";
+import {
+  addToBasket,
+  basketSelector,
+  increaseBasket,
+} from "@store/features/app/appSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -15,8 +19,8 @@ const Card = ({ id = "", image = "", name = "", price = "" }) => {
     e.stopPropagation();
     let isExist = basket.find((b) => b.id === id);
     isExist
-      ? console.log("exist")
-      : dispatch(addToBasket({ item: { id, name, price } }));
+      ? dispatch(increaseBasket({ id }))
+      : dispatch(addToBasket({ item: { id, name, price, quantity: 1 } }));
   };
   console.log(basket);
   return (
@@ -25,11 +29,11 @@ const Card = ({ id = "", image = "", name = "", price = "" }) => {
       onClick={navigateToProduct}
     >
       <img src={image} />
-      <span className="text-primary">{price} ₺</span>
+      <span className="text-primary text-sm">{price} ₺</span>
       <span className="text-black">{name}</span>
       <Button
         buttonText="Add To Cart"
-        buttonClass="rounded-md p-2 cursor-pointer"
+        buttonClass="rounded-md p-2"
         onClick={handleAddToBasket}
       />
     </div>

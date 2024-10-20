@@ -10,7 +10,7 @@ const Button = ({
   return (
     <div
       id={id}
-      className={`flex items-center justify-center bg-primary text-white ${buttonClass} `}
+      className={`flex items-center justify-center bg-primary text-white cursor-pointer ${buttonClass} `}
       onClick={onClick}
     >
       {/* {isIcon ? (

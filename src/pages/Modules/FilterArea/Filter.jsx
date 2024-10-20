@@ -7,6 +7,7 @@ import {
 } from "@store/features/app/appSlice";
 import React, { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import LoadingImage from "@assets/loading.svg";
 
 const Filter = ({ title, items, attribute }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -31,22 +32,30 @@ const Filter = ({ title, items, attribute }) => {
           inputClass="bg-secondary"
         />
         <div className="overflow-y-scroll">
-          {filteredItems?.map((item) => (
-            <CheckBox
-              key={item[attribute]}
-              label={item[attribute]}
-              type="checkbox"
-              name="sorting"
-              className="p-1"
-              checked={filters[attribute].includes(item[attribute])}
-              id={item[attribute]}
-              onChange={() =>
-                filters[attribute].includes(item[attribute])
-                  ? dispatch(removeFilter({ attribute, item: item[attribute] }))
-                  : dispatch(addFilter({ attribute, item: item[attribute] }))
-              }
-            />
-          ))}
+          {filteredItems.length > 0 ? (
+            filteredItems?.map((item) => (
+              <CheckBox
+                key={item[attribute]}
+                label={item[attribute]}
+                type="checkbox"
+                name="sorting"
+                className="p-1"
+                checked={filters[attribute].includes(item[attribute])}
+                id={item[attribute]}
+                onChange={() =>
+                  filters[attribute].includes(item[attribute])
+                    ? dispatch(
+                        removeFilter({ attribute, item: item[attribute] })
+                      )
+                    : dispatch(addFilter({ attribute, item: item[attribute] }))
+                }
+              />
+            ))
+          ) : (
+            <div className="flex justify-center items-center">
+              <img className="w-10 text-primary" src={LoadingImage} />
+            </div>
+          )}
         </div>
       </div>
     </div>

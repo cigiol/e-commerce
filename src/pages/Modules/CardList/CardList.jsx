@@ -10,6 +10,7 @@ import {
 } from "@store/features/app/appSlice";
 import Card from "./Card";
 import ReactPaginate from "react-paginate";
+import LoadingImage from "@assets/loading.svg";
 
 const CardList = ({ itemsPerPage = 12 }) => {
   const { data: products, isLoading } = useGetProductsQuery();
@@ -81,44 +82,50 @@ const CardList = ({ itemsPerPage = 12 }) => {
     setItemOffset(newOffset);
   };
 
-  return isLoading ? (
-    <div>LOADING...</div>
-  ) : (
-    <div className="flex flex-col gap-5">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {currentItems?.map((p) => (
-          <Card
-            key={p.id}
-            id={p.id}
-            name={p.name}
-            image={p.image}
-            price={p.price}
-          />
-        ))}
-      </div>
-      <div className="flex justify-center">
-        <ReactPaginate
-          className="flex gap-3"
-          nextLabel=">"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={3}
-          marginPagesDisplayed={2}
-          pageCount={pageCount}
-          previousLabel="<"
-          pageClassName="text-pagination"
-          pageLinkClassName="page-link"
-          previousClassName="text-pagination"
-          previousLinkClassName="page-link"
-          nextClassName="text-pagination"
-          nextLinkClassName="page-link"
-          breakLabel="..."
-          breakClassName="text-pagination"
-          breakLinkClassName="page-link"
-          containerClassName="pagination"
-          activeClassName="px-2 bg-white !text-primary"
-          renderOnZeroPageCount={null}
-        />
-      </div>
+  return (
+    <div className="flex flex-col gap-5 flex-1">
+      {isLoading ? (
+        <div className="flex justify-center items-center">
+          <img className="w-20 text-primary" src={LoadingImage} />
+        </div>
+      ) : (
+        <>
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {currentItems?.map((p) => (
+              <Card
+                key={p.id}
+                id={p.id}
+                name={p.name}
+                image={p.image}
+                price={p.price}
+              />
+            ))}
+          </div>
+          <div className="flex justify-center">
+            <ReactPaginate
+              className="flex gap-3"
+              nextLabel=">"
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={3}
+              marginPagesDisplayed={2}
+              pageCount={pageCount}
+              previousLabel="<"
+              pageClassName="text-pagination"
+              pageLinkClassName="page-link"
+              previousClassName="text-pagination"
+              previousLinkClassName="page-link"
+              nextClassName="text-pagination"
+              nextLinkClassName="page-link"
+              breakLabel="..."
+              breakClassName="text-pagination"
+              breakLinkClassName="page-link"
+              containerClassName="pagination"
+              activeClassName="px-2 bg-white !text-primary"
+              renderOnZeroPageCount={null}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 };
