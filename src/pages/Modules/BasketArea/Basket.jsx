@@ -3,18 +3,20 @@ import {
   basketSelector,
   decreaseBasket,
   increaseBasket,
-  sortSelector,
+  toggleBasketSelector,
   totalPriceSelector,
   updateAppField,
 } from "@store/features/app/appSlice";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import CloseImage from "@assets/close.svg";
 
 const Basket = () => {
   const dispatch = useDispatch();
   const basket = useSelector(basketSelector);
   const totalPrice = useSelector(totalPriceSelector);
-  console.log(basket);
+  const isOpen = useSelector(toggleBasketSelector);
+  console.log(isOpen);
 
   const handleIncreaseBasket = (id) => {
     dispatch(increaseBasket({ id }));
@@ -22,9 +24,19 @@ const Basket = () => {
   const handleDecreaseBasket = (id) => {
     dispatch(decreaseBasket({ id }));
   };
+  const toggleBasket = () => {
+    dispatch(updateAppField({ field: "toggleBasket", value: !isOpen }));
+  };
 
   return (
     <div className="flex flex-col gap-4 w-60">
+      <div className="block lg:hidden relative">
+        <img
+          onClick={toggleBasket}
+          className="absolute top-2 -left-2 cursor-pointer"
+          src={CloseImage}
+        />
+      </div>
       <div className="flex flex-col gap-4 p-4 bg-white shadow">
         {basket.length > 0 ? (
           basket?.map((b) => (
