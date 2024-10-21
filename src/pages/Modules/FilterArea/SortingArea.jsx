@@ -12,7 +12,7 @@ const Sorting = ({ radioName = "" }) => {
     { value: "ascPrice", label: "Price hight to low" },
     { value: "descPrice", label: "Price low to hight" },
   ];
-  console.log(sort);
+
   return (
     <div>
       <label>Sort By</label>

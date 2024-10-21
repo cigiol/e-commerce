@@ -19,7 +19,7 @@ const FilterArea = ({ className = "", radioName = "" }) => {
   };
   return (
     <div className={`${className}`}>
-      <div className="flex flex-col gap-4 ">
+      <div className="flex flex-col gap-4">
         <div className="block md:hidden relative">
           <img
             onClick={toggleFilter}

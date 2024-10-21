@@ -16,7 +16,6 @@ const Basket = () => {
   const basket = useSelector(basketSelector);
   const totalPrice = useSelector(totalPriceSelector);
   const isOpen = useSelector(toggleBasketSelector);
-  console.log(isOpen);
 
   const handleIncreaseBasket = (id) => {
     dispatch(increaseBasket({ id }));

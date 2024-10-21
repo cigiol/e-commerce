@@ -22,6 +22,7 @@ const Filter = ({ title, items, attribute }) => {
         )
       : items;
   }, [searchTerm, items]);
+
   return (
     <div>
       <label>{title}</label>

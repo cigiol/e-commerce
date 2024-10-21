@@ -22,7 +22,7 @@ const Card = ({ id = "", image = "", name = "", price = "" }) => {
       ? dispatch(increaseBasket({ id }))
       : dispatch(addToBasket({ item: { id, name, price, quantity: 1 } }));
   };
-  console.log(basket);
+
   return (
     <div
       className="flex flex-col justify-between bg-white p-3 gap-3 cursor-pointer"
